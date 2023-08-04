@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FraImage</title>
+    <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+    <div id="main">
+        <div id="image-edits">
+            <div class="file-control">
+                <input type="file" onchange="putImage(event)">
+                <div class="file-action">
+                    <button onclick="downloadImage()">Download</button>
+                    <button>Reset</button>
+                </div>
+            </div>
+            <div class="frames">
+                <h2>Frames</h2>
+                <div class="frames-container">
+                    <div class="frame"></div>
+                    <div class="frame"></div>
+                    <div class="frame"></div>
+                    <div class="frame"></div>
+                    <div class="frame"></div>
+                    <div class="frame"></div>
+                </div>
+            </div>
+        </div>
+        <div id="image-preview">
+            <img id="imageElement" style="display: none;" accept="image" />
+            <a id="linkElement" style="display: none;"></a>
+            <canvas id="canvas" width="600px" height="300px"></canvas>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="./main.js"> </script>
+</body>
+</html>

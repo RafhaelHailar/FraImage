@@ -1,0 +1,58 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+#main {
+    display: flex;
+    height: 100vh;
+}
+
+#main > div {
+    flex: 1;
+}
+
+#image-edits {
+    background-color: rgba(0,0,0,0.5);
+    padding: 10px 20px;
+}
+
+#image-edits .file-control button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+#image-edits .file-action {
+    float: right;
+}
+
+#image-edits .frames-container {
+    height: 75vh;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+#image-edits .frames h2 {
+    font-size: 3rem;
+}
+
+#image-edits .frames-container .frame{
+    width: 30%;
+    height: 30%;
+    background-color: white;
+    margin: 13px auto;
+}
+
+#image-preview {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#image-preview canvas {
+    background: white;
+}
+
