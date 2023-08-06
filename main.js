@@ -6,22 +6,6 @@ const image_container_height  = parseInt(image_container_CSS.getPropertyValue("h
 const canvas = document.getElementById('canvas');
 const context = canvas.getContext("2d");
 
-context.save();
-context.beginPath();
-context.moveTo(100,100);
-context.lineTo(150,120);
-context.lineTo(150,230);
-context.lineTo(100,250);
-context.lineTo(100,100);
-context.clip();
-context.fillRect(100,100,50,150);
-context.restore();
-let image_frame = new Image();
-    image_frame.src = "./leave-frame.webp";
-image_frame.onload = function() {
-    context.drawImage(image_frame,50,image_frame.height,240,10,200,100,100,100);
-}   
-
 const image = document.getElementById("imageElement");
 
 let frame_width = 20;
