@@ -8,7 +8,7 @@ const context = canvas.getContext("2d");
 
 const image = document.getElementById("imageElement");
 
-let frame_image_source = "./leave-frame.webp";
+let frame_image_source = "images/leave-frame.webp";
 let frame_width = 20;
 let frame_scale;
 
