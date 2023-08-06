@@ -8,6 +8,7 @@ const context = canvas.getContext("2d");
 
 const image = document.getElementById("imageElement");
 
+let frame_image_source = "./leave-frame.webp";
 let frame_width = 20;
 let frame_scale;
 
@@ -58,8 +59,9 @@ function drawImage(canvas,context) {
     context.clearRect(0,0,canvas.width,canvas.height);
     context.fillRect(0,0,canvas.width,canvas.height);
     context.drawImage(image,frame_width,frame_width,canvas.width - (frame_width * 2),canvas.height - (frame_width * 2));
+
     let image_frame = new Image();
-    image_frame.src = "./leave-frame.webp";
+    image_frame.src = frame_image_source;
     image_frame.onload = function() {
         drawFrame(canvas,context,null,image_frame,"left");
         drawFrame(canvas,context,null,image_frame,"top");
@@ -213,4 +215,14 @@ function drawFrame(canvas,context,color,image,position) {
     ); 
 
     context.restore();
+}
+
+window.onload = function() {
+    let frame_images = document.querySelectorAll("#image-edits .frames-container .frame img");
+    for (let i = 0;i < frame_images.length;i++) {
+        frame_images[i].onclick = function() {
+            frame_image_source = this.src;
+            drawImage(canvas,context);
+        }
+    }
 }

@@ -44,6 +44,13 @@ body {
     height: 30%;
     background-color: white;
     margin: 20px 0;
+    object-fit: contain;    
+}
+
+#image-edits .frames-container .frame img{
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
 }
 
 #image-preview {
