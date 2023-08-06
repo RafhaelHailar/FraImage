@@ -18,6 +18,9 @@
             </div>
             <div class="frames">
                 <h2>Frames</h2>
+                <div style="text-align: right;">
+                    Frame Size: <input type="number" name="" id="" value="20" onchange="updateFrameWidth(this)">
+                </div>
                 <div class="frames-container">
                     <div class="frame"></div>
                     <div class="frame"></div>
@@ -31,6 +34,7 @@
         <div id="image-preview">
             <img id="imageElement" style="display: none;" accept="image" />
             <a id="linkElement" style="display: none;"></a>
+            <img id="imageFrameElement" alt="" style="display: none;" width="1000" height="100">
             <canvas id="canvas" width="600px" height="300px"></canvas>
         </div>
     </div>

@@ -6,6 +6,22 @@ const image_container_height  = parseInt(image_container_CSS.getPropertyValue("h
 const canvas = document.getElementById('canvas');
 const context = canvas.getContext("2d");
 
+context.save();
+context.beginPath();
+context.moveTo(100,100);
+context.lineTo(150,120);
+context.lineTo(150,230);
+context.lineTo(100,250);
+context.lineTo(100,100);
+context.clip();
+context.fillRect(100,100,50,150);
+context.restore();
+let image_frame = new Image();
+    image_frame.src = "./leave-frame.webp";
+image_frame.onload = function() {
+    context.drawImage(image_frame,50,image_frame.height,240,10,200,100,100,100);
+}   
+
 const image = document.getElementById("imageElement");
 
 let frame_width = 20;
@@ -55,49 +71,279 @@ function downloadImage() {
 }
 
 function drawImage(canvas,context) {
+    context.clearRect(0,0,canvas.width,canvas.height);
+    context.fillRect(0,0,canvas.width,canvas.height);
     context.drawImage(image,frame_width,frame_width,canvas.width - (frame_width * 2),canvas.height - (frame_width * 2));
-        context.fillStyle = "pink";
-        //top border
-        context.beginPath();
-        context.moveTo(0,0);
-        context.lineTo(frame_width,frame_width);
-        context.lineTo(canvas.width - frame_width,frame_width);
-        context.lineTo(canvas.width,0);
-        context.lineTo(0,0);
-        context.fill();
+    let image_frame = new Image();
+    image_frame.src = "./leave-frame.webp";
+    image_frame.onload = function() {
+        drawFrame(canvas,context,null,image_frame,"left");
+        drawFrame(canvas,context,null,image_frame,"top");
+        drawFrame(canvas,context,null,image_frame,"right");
+        drawFrame(canvas,context,null,image_frame,"bottom");
+        /* (function() {
+            context.save();
+            //top border
+            context.fillStyle = "pink";
+            context.beginPath();
+            context.moveTo(0,0);
+            context.lineTo(frame_width,frame_width);
+            context.lineTo(canvas.width - frame_width,frame_width);
+            context.lineTo(canvas.width,0);
+            context.lineTo(0,0); 
+            context.clip();
+            context.drawImage(
+                image_frame,
+                0,
+                0,
+                image_frame.width,
+                frame_width,
+                0,
+                0,
+                canvas.width,
+                frame_width
+            );
+            context.restore();
+        })();
+        
+        (function() {
+            context.save();
+            //left border
+            context.fillStyle = "yellow";
+            context.beginPath();
+            context.moveTo(0,0);
+            context.lineTo(frame_width,frame_width);
+            context.lineTo(frame_width,canvas.height - frame_width);
+            context.lineTo(0,canvas.height);
+            context.lineTo(0,0);
+            context.clip();
+            context.drawImage(
+                image_frame,
+                0,
+                0,
+                frame_width,
+                image_frame.height,
+                0,
+                0,
+                frame_width,
+                canvas.height
+            );   
+            context.restore();
+        })();
+
+        (function() {
+            context.save();
+            //right border
+            context.fillStyle = "green";
+            context.beginPath();
+            context.moveTo(canvas.width,0);
+            context.lineTo(canvas.width - frame_width,frame_width);
+            context.lineTo(canvas.width - frame_width,canvas.height - frame_width);
+            context.lineTo(canvas.width,canvas.height);
+            context.lineTo(canvas.width,0);
+            context.clip();
+           /*  let pattern = context.createPattern(image_frame,"repeat");
+            context.fillStyle = pattern;
+            context.fillRect(canvas.width - frame_width,0,frame_width,canvas.height); 
+            context.drawImage(
+                image_frame,
+                image_frame.width - frame_width,
+                0,
+                frame_width,
+                image_frame.height,
+                canvas.width - frame_width,
+                0,
+                frame_width,
+                canvas.height
+            );     
+            context.restore();
+        })();
+
+        (function() {
+            context.save();
+            //bottom border
+            context.fillStyle = "blue";
+            context.beginPath();
+            context.moveTo(0,canvas.height);
+            context.lineTo(frame_width,canvas.height - frame_width);
+            context.lineTo(canvas.width - frame_width,canvas.height - frame_width);
+            context.lineTo(canvas.width,canvas.height);
+            context.lineTo(0,canvas.height);
+            context.clip();
+            /* let pattern = context.createPattern(image_frame,"repeat");
+            context.fillStyle = pattern;
+            context.fillRect(0,canvas.height - frame_width,canvas.width,frame_width);    
+            context.drawImage(
+                image_frame,
+                0,
+                image_frame.height-frame_width,
+                image_frame.width,
+                frame_width,
+                0,
+                canvas.height - frame_width,
+                canvas.width,
+                frame_width
+            ); 
+            /* context.drawImage(
+                image_frame,
+                0,
+                canvas.height,
+                canvas.width,
+                -frame_width,
+                0,
+                canvas.height - frame_width,
+                image_frame.width,
+                frame_width
+            );  
+            context.restore(); 
+        })();*/
        
-        //left border
-        context.fillStyle = "yellow";
-        context.beginPath();
-        context.moveTo(0,0);
-        context.lineTo(frame_width,frame_width);
-        context.lineTo(frame_width,canvas.height - frame_width);
-        context.lineTo(0,canvas.height);
-        context.lineTo(0,0);
-        context.fill();
-
-        //right border
-        context.fillStyle = "green";
-        context.beginPath();
-        context.moveTo(canvas.width,0);
-        context.lineTo(canvas.width - frame_width,frame_width);
-        context.lineTo(canvas.width - frame_width,canvas.height - frame_width);
-        context.lineTo(canvas.width,canvas.height);
-        context.lineTo(canvas.width,0);
-        context.fill();
-
-        //bottom border
-        context.fillStyle = "blue";
-        context.beginPath();
-        context.moveTo(0,canvas.height);
-        context.lineTo(frame_width,canvas.height - frame_width);
-        context.lineTo(canvas.width - frame_width,canvas.height - frame_width);
-        context.lineTo(canvas.width,canvas.height);
-        context.lineTo(0,canvas.height);
-        context.fill();
+    }
 }
 
 function scaleCanvas(scale = 1) {
     canvas.width = image.width * scale;
     canvas.height = image.height * scale;
+}
+
+function updateFrameWidth(element) {
+    frame_width = element.value;
+    drawImage(canvas,context);
+}
+
+function getFramePosition(position,width,height) {
+    let POSITIONS = {
+
+        left :  [
+            [0,0],
+            [frame_width,frame_width],
+            [frame_width,height - frame_width],
+            [0,height]
+        ],
+        
+        top : [
+            [0,0],
+            [frame_width,frame_width],
+            [width - frame_width,frame_width],
+            [width,0]
+        ],
+
+        right : [
+            [width,0],
+            [width - frame_width,frame_width],
+            [width - frame_width,height - frame_width],
+            [width,height]
+        ],
+
+        bottom : [
+            [0,height],
+            [frame_width,height - frame_width],
+            [width - frame_width,height - frame_width],
+            [width,height]
+        ]
+
+    }
+
+    return POSITIONS[position];
+}
+
+function getImagePosition(position,image,width,height) {
+    let POSITIONS = {
+        left : {
+            image_source : {
+                x : 0,
+                y : 0,
+                width : frame_width,
+                height : image.height
+            },
+            image_canvas : {
+                x : 0,
+                y : 0,
+                width : frame_width,
+                height : height
+            }
+        },
+
+        top : {
+            image_source : {
+                x : 0,
+                y : 0,
+                width : image.width,
+                height : frame_width
+            },
+            image_canvas : {
+                x : 0,
+                y : 0,
+                width : width,
+                height : frame_width
+            }
+        },
+
+        right : {
+            image_source : {
+                x : image.width - frame_width,
+                y : 0,
+                width : frame_width,
+                height : image.height
+            },
+            image_canvas : {
+                x : canvas.width - frame_width,
+                y : 0,
+                width : frame_width,
+                height : height
+            }
+        },
+
+        bottom : {
+            image_source : {
+                x : 0,
+                y : image.height - frame_width,
+                width : image.width,
+                height : frame_width
+            },
+            image_canvas : {
+                x : 0,
+                y : canvas.height - frame_width,
+                width : width,
+                height : frame_width
+            }
+        },
+    }
+
+    return POSITIONS[position];
+}
+
+function drawFrame(canvas,context,color,image,position) {
+    let coordinates = getFramePosition(position,canvas.width,canvas.height);
+
+    context.save();
+    context.beginPath();
+
+    //starting position
+    context.moveTo(coordinates[0][0],coordinates[0][1]);
+
+    for (let i = 1;i < coordinates.length;i++) {
+        let [x,y] = coordinates[i];
+        context.lineTo(x,y);
+    }
+
+    //ending position
+    context.lineTo(coordinates[0][0],coordinates[0][1]);
+
+    context.clip();  
+
+    let {image_source,image_canvas} = getImagePosition(position,image,canvas.width,canvas.height);
+    context.drawImage(
+        image,
+        image_source.x,
+        image_source.y,
+        image_source.width,
+        image_source.height,
+        image_canvas.x,
+        image_canvas.y,
+        image_canvas.width,
+        image_canvas.height
+    ); 
+
+    context.restore();
 }
