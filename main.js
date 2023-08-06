@@ -48,7 +48,7 @@ function downloadImage() {
     drawImage(temp_canvas,temp_context);
 
     //convert to a url
-    let canvasData = temp_canvas.toDataURL("image/jpg");
+    let canvasData = canvas.toDataURL("image/jpg");
     canvasData.replace("image/jpg","image/octet-stream");
 
     linkElement.setAttribute("href",canvasData);
@@ -57,7 +57,6 @@ function downloadImage() {
 
 function drawImage(canvas,context) {
     context.clearRect(0,0,canvas.width,canvas.height);
-    context.fillRect(0,0,canvas.width,canvas.height);
     context.drawImage(image,frame_width,frame_width,canvas.width - (frame_width * 2),canvas.height - (frame_width * 2));
 
     let image_frame = new Image();
