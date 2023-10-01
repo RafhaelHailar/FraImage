@@ -3,67 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FraImage</title>
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <title>FraImage - Frame Your Image</title>
+    <link rel="icon" href="./images/logo.png" />
 </head>
-<body>
-    <div id="main">
-        <div id="image-edits">
-            <div class="file-control">
-                <input type="file" onchange="putImage(event)">
-                <div class="file-action">
-                    <button onclick="downloadImage()">Download</button>
-                    <button>Reset</button>
-                </div>
-            </div>
-            <div class="frames">
-                <h2>Frames</h2>
-                <div style="text-align: right;">
-                    Frame Size: <input type="number" name="" id="" value="20" onchange="updateFrameWidth(this)">
-                </div>
-                <div class="frames-container">
-                    <div class="frame">
-                        <!-- Did't found the original artist found the image here -->
-                        <!-- https://www.healthline.com/nutrition/taro-leaves#benefits -->
-                        <img src="images/leave-frame.webp" alt="">
-                    </div>
-                    <div class="frame">
-                        <!-- Coprights to Pixabay -->
-                        <!-- https://www.pexels.com/photo/brown-brick-wall-207142/ -->
-                        <img src="images/brick-frame.jpg" alt="" title="Artist : Pixabay">
-                    </div>
-                    <div class="frame">
-                        <!-- Copyrights to Sebastian Sørensen -->
-                        <!-- https://www.pexels.com/photo/water-bubbles-2853937/ -->
-                        <img src="images/water-frame.jpg" alt="" title="Artist : Sebastian Sørensen">
-                    </div>
-                    <div class="frame">
-                        <!-- Copyrights to Emma Henry -->
-                        <!-- https://www.pexels.com/photo/fire-burn-wallpaper-627930/ -->
-                        <img src="images/fire-frame.jpg" alt="" title="Artist : Emma Henry">
-                    </div>
-                    <div class="frame">
-                        <!-- Copyrights to Miguel Á. Padriñán -->
-                        <!-- https://www.pexels.com/photo/white-clouds-on-blue-sky-19670/ -->
-                        <img src="images/cloud-frame.jpg" alt="" title="Artist : Miguel Á. Padriñán">
-                    </div>
-                    <div class="frame">
-                        <!-- Copyrights to Pixabay -->
-                        <!-- https://www.pexels.com/photo/gray-and-black-abstract-artwork-35543/ -->
-                        <img src="images/metal-frame.jpg" alt="" title="Artist : Pixabay">
-                    </div>
-                </div>
+<body id="landing-body">
+    <div class="logo">
+        <img src="./images/logo.png" width="50rem" alt="">
+        FraImage
+    </div>
+    <div class="header">
+        <div class="left">
+            <div style="position: relative;background-color: black;height: 100%;">
+                <img src="./images/header-image-1.jpg" height="330rem" />
+                <img src="./images/header-image-2.jpg" width="350rem"/>
+                <img src="./images/header-image-3.jpg" width="400rem"/>
             </div>
         </div>
-        <div id="image-preview">
-            <img id="imageElement" style="display: none;" accept="image" />
-            <a id="linkElement" style="display: none;"></a>
-            <img id="imageFrameElement" alt="" style="display: none;" width="1000" height="100">
-            <canvas id="canvas" width="600px" height="300px"></canvas>
+        <div class="right">
+            <h1>Frame your image with just a few click and adjust it size depend on your liking.</h1>
+            <p>FraImage is a framing tool (not a editing one , although it can edit your image by adding a frame its main focus is to add , adjust  and customize your frame not the image) that is easy to use and can save you a lot of time for framing your images.</p>
+            <div>
+                <a href="./frame.html">
+                    <button><i class="fa-solid fa-crop-simple" style="margin-right: 1rem;"></i>Start Framing</button>
+                </a>
+            </div>
         </div>
     </div>
-
-
-    <script type="text/javascript" src="./main.js"> </script>
 </body>
 </html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FraImage</title>
+    <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+    <div id="main">
+        <div id="image-edits">
+            <div class="file-control">
+                <input type="file" onchange="putImage(event)">
+                <div class="file-action">
+                    <button onclick="downloadImage()">Download</button>
+                    <button>Reset</button>
+                </div>
+            </div>
+            <div class="frames">
+                <div>
+                    <h2 style="margin: 0;">Frames</h2>
+                    <div style="text-align: right;">
+                        frame size: <input type="number" name="" id="" value="20" onchange="updateFrameWidth(this)">
+                    </div>
+                    <div style="clear: both;margin-bottom: 1rem;"></div>
+                    <div class="frames-container">
+                        <div class="frame">
+                            <!-- Did't found the original artist found the image here -->
+                            <!-- https://www.healthline.com/nutrition/taro-leaves#benefits -->
+                            <img src="images/leave-framed.jpg" alt="">
+                        </div>
+                        <div class="frame">
+                            <!-- Coprights to Pixabay -->
+                            <!-- https://www.pexels.com/photo/brown-brick-wall-207142/ -->
+                            <img src="images/brick-framed.jpg" alt="" title="Artist : Pixabay">
+                        </div>
+                        <div class="frame">
+                            <!-- Copyrights to Sebastian Sørensen -->
+                            <!-- https://www.pexels.com/photo/water-bubbles-2853937/ -->
+                            <img src="images/water-framed.jpg" alt="" title="Artist : Sebastian Sørensen">
+                        </div>
+                        <div class="frame">
+                            <!-- Copyrights to Emma Henry -->
+                            <!-- https://www.pexels.com/photo/fire-burn-wallpaper-627930/ -->
+                            <img src="images/fire-framed.jpg" alt="" title="Artist : Emma Henry">
+                        </div>
+                        <div class="frame">
+                            <!-- Copyrights to Miguel Á. Padriñán -->
+                            <!-- https://www.pexels.com/photo/white-clouds-on-blue-sky-19670/ -->
+                            <img src="images/cloud-framed.jpg" alt="" title="Artist : Miguel Á. Padriñán">
+                        </div>
+                        <div class="frame">
+                            <!-- Copyrights to Pixabay -->
+                            <!-- https://www.pexels.com/photo/gray-and-black-abstract-artwork-35543/ -->
+                            <img src="images/metal-framed.jpg" alt="" title="Artist : Pixabay">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="image-preview">
+            <img id="imageElement" style="display: none;" accept="image" />
+            <a id="linkElement" style="display: none;"></a>
+            <img id="imageFrameElement" alt="" style="display: none;" style="background-repeat: repeat;">
+            <canvas id="canvas" width="600px" height="300px"></canvas>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="./main.js"> </script>
+</body>
+</html>

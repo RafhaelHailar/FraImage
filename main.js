@@ -6,9 +6,25 @@ const image_container_height  = parseInt(image_container_CSS.getPropertyValue("h
 const canvas = document.getElementById('canvas');
 const context = canvas.getContext("2d");
 
+const IMAGE_FRAMES = [
+    "./images/leave-frame.webp",
+    "./images/brick-frame.jpg",
+    "./images/water-frame.jpg",
+    "./images/fire-frame.jpg",
+    "./images/cloud-frame.jpg",
+    "./images/metal-frame.jpg",
+]
+
 const image = document.getElementById("imageElement");
 
 let frame_image_source = "images/leave-frame.webp";
+/* context.save();
+let imig = document.getElementById("imageFrameElement");
+imig.src = "./image.jpg";  
+imig.onload = function() {
+    context.drawImage(imig,-1050,0,imig.width,imig.height,100,50,300,200);
+}
+context.restore(); */
 let frame_width = 20;
 let frame_scale;
 
@@ -36,26 +52,30 @@ function downloadImage() {
     linkElement.setAttribute("download","firaimage-image.jpg");
 
     //create a temporary canvas for downloading the image with its original size
-    let temp_canvas = document.createElement("canvas");
+/*     let temp_canvas = document.createElement("canvas");
     temp_canvas.width = image.width;
     temp_canvas.height = image.height;
 
-    let temp_context = temp_canvas.getContext("2d");
+    let temp_context = temp_canvas.getContext("2d"); */
 
     //scale the width
-    frame_width = image.width * frame_scale;
+ /*    frame_width = (frame_width / canvas.width) * image.width; */
+ /*    canvas.style.display = "none";
+    image_container.appendChild(temp_canvas); */
 
-    drawImage(temp_canvas,temp_context);
-
-    //convert to a url
     let canvasData = canvas.toDataURL("image/jpg");
     canvasData.replace("image/jpg","image/octet-stream");
 
     linkElement.setAttribute("href",canvasData);
-    linkElement.click();
+   linkElement.click();
+/*     drawImage(canvas,context,function() {
+         //convert to a url
+       frame_width /= image.width / frame_scale;
+    }); */
+
 }
 
-function drawImage(canvas,context) {
+function drawImage(canvas,context,callback) {
     context.clearRect(0,0,canvas.width,canvas.height);
     context.drawImage(image,frame_width,frame_width,canvas.width - (frame_width * 2),canvas.height - (frame_width * 2));
 
@@ -66,6 +86,9 @@ function drawImage(canvas,context) {
         drawFrame(canvas,context,null,image_frame,"top");
         drawFrame(canvas,context,null,image_frame,"right");
         drawFrame(canvas,context,null,image_frame,"bottom");
+    
+        //it fixes the problem of when the frame images wasn't loaded yet it the downloadImage download an image without the frames  
+        if(callback) callback();
     }
 }
 
@@ -76,6 +99,7 @@ function scaleCanvas(scale = 1) {
 
 function updateFrameWidth(element) {
     frame_width = element.value;
+    console.log(frame_width)
     drawImage(canvas,context);
 }
 
@@ -220,7 +244,7 @@ window.onload = function() {
     let frame_images = document.querySelectorAll("#image-edits .frames-container .frame img");
     for (let i = 0;i < frame_images.length;i++) {
         frame_images[i].onclick = function() {
-            frame_image_source = this.src;
+            frame_image_source = IMAGE_FRAMES[i];
             drawImage(canvas,context);
         }
     }
